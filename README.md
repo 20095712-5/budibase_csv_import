@@ -12,6 +12,8 @@ You must select a table whose schema exactly matches that of the import file.
 
 If you need to transform the data into a different schema, you should create a Budibase automation based on a "Create Row" trigger on your import table.
 
+You can also set a UUID to be set on every row to differentiate imports
+
 ### onImport
 
 Choose which actions you want to perform once the import is complete
