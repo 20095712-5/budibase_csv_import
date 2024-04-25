@@ -41,6 +41,11 @@
         "key": "dragzoneText",
         "label": "Dragzone text",
         "defaultValue":"Drag 'n' drop some files here, or click to select files"
+      },
+      {
+        "type": "text",
+        "key": "importUUID",
+        "label": "Import UUID (Set on all rows)"
       }
     ],
     "context": {

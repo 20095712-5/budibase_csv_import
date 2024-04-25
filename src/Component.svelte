@@ -13,6 +13,7 @@
   export let copyErrorText = "Copy errors"
   export let onImport= () => {};
   export let dragzoneText;
+  export let importUUID;
 
   const { styleable, Provider, API, builderStore } = getContext("sdk");
   const component = getContext("component");
@@ -65,7 +66,8 @@
           importedCount++;
           await API.saveRow({
             tableId: table.tableId,
-            ...row
+            ...row,
+            ...(importUUID && {importUUID})
           });
         } catch(e) {
           importErrors.push({
@@ -99,8 +101,8 @@
 
 <div use:styleable={$component.styles} >
   {#if !isParsed}
-    <Dropzone 
-      on:drop={handleFilesSelect} 
+    <Dropzone
+      on:drop={handleFilesSelect}
       multiple=false>
       <p>{dragzoneText}</p>
     </Dropzone>
@@ -130,14 +132,14 @@
 
   <div class="buttons">
     {#if isParsed || importErrors.length > 0}
-      <button 
+      <button
         on:click={reset}
         class="spectrum-Button spectrum-Button--quiet spectrum-Button--secondary spectrum-Button--sizeS">
           {resetText}
       </button>
     {/if}
     {#if isParsed && importErrors.length > 0}
-      <button 
+      <button
         class="spectrum-Button spectrum-Button--fill spectrum-Button--primary spectrum-Button--sizeS"
         on:click={copyErrors}>
           {copyErrorText}
